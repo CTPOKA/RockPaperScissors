@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="paper">images/paper.png</file>
+        <file alias="rock">images/rock.png</file>
+        <file alias="scissors">images/scissors.png</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file alias="click">sounds/click.wav</file>
+        <file alias="lose">sounds/lose.wav</file>
+        <file alias="win">sounds/win.wav</file>
+    </qresource>
+</RCC>
