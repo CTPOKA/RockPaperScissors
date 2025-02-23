@@ -49,8 +49,8 @@ Page {
 
         Connections {
             target: networkManager
-            function onServerStartFailed() {
-                statusText.text = "Ошибка создания комнаты!"
+            function onServerError(Message) {
+                statusText.text = Message
                 loadingDots.visible = false
                 statusText.color = "pink"
             }
@@ -60,6 +60,7 @@ Page {
             }
             function onPlayerDisconnected() {
                 statusText.text = "Игрок отключился"
+                loadingDots.visible = false
                 statusText.color = "pink"
             }
         }
@@ -67,7 +68,7 @@ Page {
         CustomButton {
             text: "Назад"
             onClicked: {
-                networkManager.stopServer()
+                networkManager.disconnect()
                 stackView.pop()
             }
         }

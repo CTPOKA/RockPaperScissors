@@ -12,7 +12,7 @@ Page {
 
         CustomText {
             id: scoreText
-            text: networkManager.playerScore + " - " + networkManager.opponentScore
+            text: gameLogic.playerScore + " - " + gameLogic.opponentScore
             font.pixelSize: 22
             font.bold: true
             anchors.horizontalCenter: parent.horizontalCenter
@@ -138,7 +138,7 @@ Page {
     }
 
     Connections {
-        target: networkManager
+        target: gameLogic
 
         function onGameResult(result) {
             resultText.text = result
@@ -162,6 +162,14 @@ Page {
             opponentChoiceImage.opacity = 1
             vsIcon.opacity = 1
         }
+    }
+
+    Connections {
+        target: networkManager
+
+        function onPlayerDisconnected() {
+            stackView.pop()
+        }
 
         function onChoiceUpdated() {
             if (networkManager.playerChoice) {
@@ -170,10 +178,6 @@ Page {
                 opponentChoiceImage.opacity = 0
                 lastChoice = networkManager.playerChoice
             }
-        }
-
-        function onPlayerDisconnected() {
-            stackView.pop()
         }
     }
 }

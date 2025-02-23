@@ -23,13 +23,17 @@ qt_add_qml_module(appRockPaperScissors
     QML_FILES JoinRoom.qml
     QML_FILES Game.qml
     QML_FILES Main.qml
-    SOURCES networkmanager.h networkmanager.cpp
+    SOURCES NetworkManager.h NetworkManager.cpp
     QML_FILES CustomButton.qml
     RESOURCES resources.qrc
     QML_FILES PulsingCircle.qml
     QML_FILES LoadingDots.qml
     QML_FILES CustomTextField.qml
     QML_FILES CustomText.qml
+    SOURCES GameServer.h GameServer.cpp
+    SOURCES GameClient.h GameClient.cpp
+    SOURCES GameLogic.h GameLogic.cpp
+    SOURCES
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

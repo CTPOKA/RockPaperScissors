@@ -36,8 +36,8 @@ Page {
                 statusText.text = ""
                 stackView.push(gamePage)
             }
-            function onConnectionFailed() {
-                statusText.text = "Ошибка подключения!"
+            function onServerError(Message) {
+                statusText.text = Message
                 statusText.color = "pink"
             }
             function onPlayerDisconnected() {
