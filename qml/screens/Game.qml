@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import Qt5Compat.GraphicalEffects
+import RockPaperScissors 1.0
 
 Page {
     title: "Игра"
@@ -167,7 +168,7 @@ Page {
     Connections {
         target: networkManager
 
-        function onPlayerDisconnected() {
+        function onDisconnected() {
             stackView.pop()
         }
 

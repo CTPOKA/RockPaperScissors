@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import RockPaperScissors 1.0
 
 Page {
     title: "Создание комнаты"
@@ -58,7 +59,7 @@ Page {
                 statusText.text = ""
                 stackView.push(gamePage)
             }
-            function onPlayerDisconnected() {
+            function onDisconnected() {
                 statusText.text = "Игрок отключился"
                 loadingDots.visible = false
                 statusText.color = "pink"

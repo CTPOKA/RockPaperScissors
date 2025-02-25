@@ -14,6 +14,7 @@ void GameClient::connectToServer(const QString& ip) {
     socket->connectToHost(ip, port);
     if (!socket->waitForConnected(2000)) {
         emit connectionError("Ошибка подключения!");
+        return;
     }
     qDebug() << "[CLIENT] Подключено к серверу!";
     connectionCheckTimer.start(1000);
@@ -41,6 +42,6 @@ void GameClient::sendData(const QString& data) {
 void GameClient::checkServerConnection() {
     if (socket->state() == QAbstractSocket::UnconnectedState) {
         qDebug() << "[CLIENT] Сервер отключился!";
-        emit connectionError("Потеряно соединение!");
+        emit connectionLost();
     }
 }

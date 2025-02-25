@@ -27,7 +27,7 @@ public:
 
 signals:
     void serverError(QString message);
-    void playerDisconnected();
+    void disconnected();
     void playerConnected();
     void choiceUpdated();
 

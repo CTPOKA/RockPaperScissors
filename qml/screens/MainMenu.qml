@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import RockPaperScissors 1.0
 
 Page {
     title: "Главное меню"

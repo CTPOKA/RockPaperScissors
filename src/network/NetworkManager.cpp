@@ -6,12 +6,16 @@ NetworkManager::NetworkManager(GameLogic* gameLogic, QObject *parent)
 
     connect(&server, &GameServer::clientConnected, this, &NetworkManager::onPlayerConnected);
     connect(&client, &GameClient::connected, this, &NetworkManager::onPlayerConnected);
+
     connect(&server, &GameServer::serverError, this, &NetworkManager::onServerError);
     connect(&client, &GameClient::connectionError, this, &NetworkManager::onServerError);
+
     connect(&server, &GameServer::dataReceived, this, &NetworkManager::handleChoiceReceived);
     connect(&client, &GameClient::dataReceived, this, &NetworkManager::handleChoiceReceived);
+
     connect(&server, &GameServer::clientDisconnected, this, &NetworkManager::disconnect);
-    connect(&client, &GameClient::connectionError, this, &NetworkManager::disconnect);
+    connect(&client, &GameClient::connectionLost, this, &NetworkManager::disconnect);
+
     connect(gameLogic, &GameLogic::finalWinner, this, [](bool isPlayerWinner) {
         qDebug() << (isPlayerWinner ? "[GAME] Ты победил!" : "[GAME] Ты проиграл!");
     });
@@ -35,7 +39,7 @@ void NetworkManager::disconnect() {
     }
     nextRound();
     gameLogic->resetGame();
-    emit playerDisconnected();
+    emit disconnected();
 }
 
 void NetworkManager::sendChoice(QString choice) {

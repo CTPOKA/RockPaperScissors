@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import RockPaperScissors 1.0
 
 Page {
     title: "Подключение к комнате"
@@ -40,7 +41,7 @@ Page {
                 statusText.text = Message
                 statusText.color = "pink"
             }
-            function onPlayerDisconnected() {
+            function onDisconnected() {
                 statusText.text = "Потеряно соединение"
                 statusText.color = "pink"
             }

@@ -5,36 +5,41 @@ project(RockPaperScissors VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTORCC ON)
 
+set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/qml/components)
+set(QML2_IMPORT_PATH ${QML_IMPORT_PATH})
+
 find_package(Qt6 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appRockPaperScissors
-    main.cpp
+    src/main.cpp
 )
 
 qt_add_qml_module(appRockPaperScissors
     URI RockPaperScissors
     VERSION 1.0
     QML_FILES
-    MainMenu.qml
-    QML_FILES CreateRoom.qml
+        qml/Main.qml
+        qml/screens/MainMenu.qml
+        qml/screens/CreateRoom.qml
+        qml/screens/JoinRoom.qml
+        qml/screens/Game.qml
+        qml/components/CustomButton.qml
+        qml/components/CustomText.qml
+        qml/components/CustomTextField.qml
+        qml/components/PulsingCircle.qml
+        qml/components/LoadingDots.qml
     SOURCES
-    QML_FILES JoinRoom.qml
-    QML_FILES Game.qml
-    QML_FILES Main.qml
-    SOURCES NetworkManager.h NetworkManager.cpp
-    QML_FILES CustomButton.qml
-    RESOURCES resources.qrc
-    QML_FILES PulsingCircle.qml
-    QML_FILES LoadingDots.qml
-    QML_FILES CustomTextField.qml
-    QML_FILES CustomText.qml
-    SOURCES GameServer.h GameServer.cpp
-    SOURCES GameClient.h GameClient.cpp
-    SOURCES GameLogic.h GameLogic.cpp
-    SOURCES
+        src/network/NetworkManager.h    src/network/NetworkManager.cpp
+        src/network/GameServer.h        src/network/GameServer.cpp
+        src/network/GameClient.h        src/network/GameClient.cpp
+        src/logic/GameLogic.h           src/logic/GameLogic.cpp
+    RESOURCES
+        resources/resources.qrc
 )
+
+target_include_directories(appRockPaperScissors PRIVATE src src/network src/logic)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

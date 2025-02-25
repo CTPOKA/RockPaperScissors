@@ -18,6 +18,7 @@ signals:
     void disconnected();
     void dataReceived(const QString& data);
     void connectionError(const QString& error);
+    void connectionLost();
 
 private slots:
     void receiveData();
